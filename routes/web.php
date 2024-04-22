@@ -18,10 +18,9 @@ use PhpParser\Builder\Class_;
 Route::get('/', function () {
     return view('index');
 });
+
 Route::post('processCsv', [Controller::class, 'processCsv'])->name('importCsv');
 Route::get('processCsv', function(){
     return view('index');
 });
 
-
-Route::get('/csv', [Controller::class, 'processCsv']);
