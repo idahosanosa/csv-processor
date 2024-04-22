@@ -51,19 +51,21 @@ class Controller extends BaseController
                     $namePosition = strtok(" ");
                 }
 
+
                 if(strlen($namePosition) <= 2 ){
                     $person['initial'] = $namePosition;
                     $namePosition = strtok(" ");
                 }
 
                 if(strlen($namePosition) >= 3){
-                    $isLastname = explode(' ', $part);
-                    if(strtolower( trim(array_pop($isLastname)) ) !== strtolower(trim($namePosition)) ) {
+                    $nameArray = explode(' ', $part);
+                    if(strtolower(trim(array_pop($nameArray)) ) !== strtolower(trim($namePosition)) ) {
                         $person['first_name'] = $namePosition;
                     }
                 }
 
                 // Parse last name
+
                 $lastSpacePos = strrpos(trim($part), ' ');
                 if ($lastSpacePos !== false) {
                     $person['last_name'] = substr(trim($part), $lastSpacePos + 1);
@@ -80,9 +82,7 @@ class Controller extends BaseController
 
         fclose($file);
 
-
-        // return response()->json($people);
-        return view('index', ['people' => $this->people]); // redirect()->route('/')->with($people);
+        return view('index', ['people' => $this->people]);
 
 
     }
